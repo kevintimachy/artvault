@@ -30,7 +30,7 @@ export default function ArtworkCardDetails({ objectID }) {
 
     useEffect(() => {
         setShowAdded(favouritesList?.includes(objectID));
-    }, [favouritesList]);
+    }, [favouritesList, objectID]);
 
 
     const { data, error } = useSWR(objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}` : null, fetcher);

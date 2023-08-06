@@ -12,10 +12,6 @@ export default function History() {
 
   const router = useRouter();
 
-  if (!searchHistory) {
-    return null;
-  }
-
   let parsedHistory = [];
 
   searchHistory.forEach(h => {
@@ -34,9 +30,9 @@ export default function History() {
     setSearchHistory(await removeFromHistory(searchHistory[index]));
   }
 
-  useEffect(() => {
-    console.log(parsedHistory);
-  }, [parsedHistory]);
+  if (!searchHistory) {
+    return null;
+  }
 
   return (
     <>
