@@ -1,3 +1,14 @@
+/*********************************************************************************
+*  WEB422 – Assignment 06
+*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part of this
+*  assignment has been copied manually or electronically from any other source (including web sites) or 
+*  distributed to other students.
+* 
+*  Name: Kevin Timachy Student ID: 145075180 Date: Aug 6th 2023
+*
+*  Vercel App (Deployed) Link: https://met-next-9aj7ylsx6-kevintimachy.vercel.app/ 
+*
+********************************************************************************/
 
 import { Row, Image, Col, Container } from 'react-bootstrap';
 
