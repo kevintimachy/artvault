@@ -1,5 +1,7 @@
 import '@/styles/globals.css';
 import '@/styles/bootstrap.min.css';
+import '../styles/custom.css';
+
 import Layout from '@/components/Layout';
 import { SWRConfig } from 'swr';
 import RouteGuard from '@/components/RouteGuard';

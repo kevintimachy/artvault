@@ -1,0 +1,14 @@
+/* styles/custom.css */
+
+:root {
+  --primary: #4b0082; /* Royal Indigo */
+  --secondary: #6c757d; /* Neutral Gray */
+  --success: #28a745; /* Classic Green */
+  --danger: #dc3545; /* Strong Red */
+  --warning: #ffc107; /* Golden Amber */
+  --info: #007bff; /* Bright Blue */
+  --light: #f8f9fa; /* Off-White */
+  --dark: #343a40; /* Charcoal Gray */
+}
+
+

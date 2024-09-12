@@ -45,7 +45,7 @@ export default function MainNav() {
     <>
       <Navbar expanded={isExpanded} className="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark" expand="lg">
         <Container>
-          <Navbar.Brand>Kevin Timachy</Navbar.Brand>
+          <Navbar.Brand>THE MET</Navbar.Brand>
           <Navbar.Toggle onClick={toggle} aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -66,7 +66,7 @@ export default function MainNav() {
                     className="me-2"
                     aria-label="Search"
                   />
-                  <Button className="btn btn-secondary my-2 my-sm-0" type="submit" >Search</Button>
+                  <Button className="btn btn-primary my-2 my-sm-0" type="submit" >Search</Button>
                 </Form>
                 &nbsp;
                 <Nav>
