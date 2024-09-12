@@ -47,7 +47,9 @@ export default function ArtworkCardDetails({ objectID }) {
             <Card>
                 <Card.Img variant="top" src={imageURL} />
                 <Card.Body>
-                    <Card.Title>{data.title || 'N/A'}</Card.Title>
+                    <Card.Title
+
+                    >{data.title || 'N/A'}</Card.Title>
 
                     <Card.Text>
                         <strong>Object Date:</strong> {data.objectDate || 'N/A'}<br />
