@@ -3,6 +3,7 @@ import Error from 'next/error';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
 
+
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ArtworkCard({ objectID }) {
@@ -13,7 +14,7 @@ export default function ArtworkCard({ objectID }) {
         return <Error statusCode={404}></Error>
     }
 
-    const imageURL = data?.primaryImageSmall || 'https://via.placeholder.com/375x375.png?text=[+Not+Available+]';
+    const imageURL = data?.primaryImageSmall || '/images/placeholder-image.jpg';
 
 
     if (data) {

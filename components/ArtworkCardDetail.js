@@ -39,7 +39,7 @@ export default function ArtworkCardDetails({ objectID }) {
         return <Error statusCode={404}></Error>
     }
 
-    const imageURL = data?.primaryImage || 'https://via.placeholder.com/375x375.png?text=[+Not+Available+]';
+    const imageURL = data?.primaryImage || '/images/placeholder-image.jpg';
 
 
     return !data ? null :

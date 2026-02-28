@@ -15,7 +15,7 @@ export default function Favourites() {
     return (
         <>
             <Row className="gy-4">
-                {favouritesList ?
+                {favouritesList && favouritesList.length > 0 ?
                     favouritesList.map((currentObjectID) => (
                         <Col lg={3} key={currentObjectID}>
                             <ArtworkCard objectID={currentObjectID} />

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { favouritesAtom, searchHistoryAtom } from '@/store';
 import { useAtom } from 'jotai';
 import { getFavourites, getHistory } from '@/lib/userData';
@@ -13,6 +13,22 @@ export default function RouteGuard(props) {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom);
     const [authorized, setAuthorized] = useState(false);
     const router = useRouter();
+
+    const authCheck = useCallback((url) => {
+        // redirect to login page if accessing a private page and not logged in
+        const path = url.split('?')[0];
+        if (!isAuthenticated() && !PUBLIC_PATHS.includes(path)) {
+            setAuthorized(false);
+            router.push('/login');
+        } else {
+            setAuthorized(true);
+        }
+    }, [router]);
+
+    const updateAtoms = useCallback(async () => {
+        setFavouritesList(await getFavourites());
+        setSearchHistory(await getHistory());
+    }, [setFavouritesList, setSearchHistory]);
 
     useEffect(() => {
         //save history and favourites list when page is refreshed
@@ -28,25 +44,7 @@ export default function RouteGuard(props) {
         return () => {
             router.events.off('routeChangeComplete', authCheck);
         };
-    }, []);
-
-
-
-    function authCheck(url) {
-        // redirect to login page if accessing a private page and not logged in
-        const path = url.split('?')[0];
-        if (!isAuthenticated() && !PUBLIC_PATHS.includes(path)) {
-            setAuthorized(false);
-            router.push('/login');
-        } else {
-            setAuthorized(true);
-        }
-    }
-
-    async function updateAtoms() {
-        setFavouritesList(await getFavourites());
-        setSearchHistory(await getHistory());
-    }
+    }, [authCheck, updateAtoms, router.pathname, router.events]);
 
 
 
