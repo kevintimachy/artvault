@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import '@/styles/bootstrap.min.css';
 import '../styles/custom.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import Layout from '@/components/Layout';
 import { SWRConfig } from 'swr';

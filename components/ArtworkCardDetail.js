@@ -1,36 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useAtom } from 'jotai';
 import useSWR from 'swr';
 import Error from 'next/error';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import ArtworkCard from './ArtworkCard';
-import { favouritesAtom } from '@/store';
-import { addToFavourites, removeFromFavourites } from '@/lib/userData';
+import FavouriteStar from './FavouriteStar';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ArtworkCardDetails({ objectID }) {
 
-    const [favouritesList, setFavouritesList] = useAtom(favouritesAtom);
-    const [showAdded, setShowAdded] = useState(false);
 
-    async function favouritesClicked() {
-
-        if (showAdded) {
-            setFavouritesList(await removeFromFavourites(objectID));
-            setShowAdded(false);
-        }
-        else {
-            setFavouritesList(await addToFavourites(objectID));
-            setShowAdded(true);
-        }
-
-    }
-
-    useEffect(() => {
-        setShowAdded(favouritesList?.includes(objectID));
-    }, [favouritesList, objectID]);
 
 
     const { data, error } = useSWR(objectID ? `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}` : null, fetcher);
@@ -63,7 +41,7 @@ export default function ArtworkCardDetails({ objectID }) {
                         <strong>Dimensions:</strong> {data.dimensions || 'N/A'}
                         <br />
                         <br />
-                        <Button variant={showAdded ? 'primary' : 'outline-primary'} onClick={favouritesClicked}>+ Favourite{showAdded ? ' (added)' : ''}</Button>
+                        <FavouriteStar objectID={objectID} size={46} top={16} right={16} />
                     </Card.Text>
 
                 </Card.Body>

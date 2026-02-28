@@ -2,7 +2,10 @@ import useSWR from 'swr';
 import Error from 'next/error';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
+import { useAtom } from 'jotai';
+import FavouriteStar from './FavouriteStar';
 
+// TODO: add favourite toggle button and functionality to add/remove from favourites list
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -19,7 +22,8 @@ export default function ArtworkCard({ objectID }) {
 
     if (data) {
         return (
-            <Card style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <Card style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
+                <FavouriteStar objectID={objectID} />
                 <Card.Img variant="top" src={imageURL}
                     style={{
                         width: '100%',    // specify the exact width
@@ -51,10 +55,10 @@ export default function ArtworkCard({ objectID }) {
                 <Card.Footer>
 
                     <Link href={`/artwork/${objectID}`} passHref>
-                        <Button variant="primary"><strong>ID:</strong> {objectID}</Button>
+                        <Button variant="primary">View Details</Button>
                     </Link>
                 </Card.Footer>
-            </Card>
+            </Card >
         );
     }
 
