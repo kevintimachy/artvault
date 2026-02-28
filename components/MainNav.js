@@ -45,7 +45,7 @@ export default function MainNav() {
     <>
       <Navbar expanded={isExpanded} className="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark" expand="lg">
         <Container>
-          <Navbar.Brand>THE MET</Navbar.Brand>
+          <Navbar.Brand>ArtVault</Navbar.Brand>
           <Navbar.Toggle onClick={toggle} aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
