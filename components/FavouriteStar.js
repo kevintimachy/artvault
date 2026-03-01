@@ -51,8 +51,8 @@ export default function FavouriteStar({ objectID, size = 26, top = 8, right = 8 
                 width={size}
                 height={size}
                 viewBox="0 0 24 24"
-                fill={isFavourite ? '#ffe600' : '#ffffff'}
-                stroke="#ffe600" // black border
+                fill={isFavourite ? 'var(--primary)' : '#ffffff'}
+                stroke="var(--dark)" // black border
                 strokeWidth="1"
                 style={{
                     filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.4))',

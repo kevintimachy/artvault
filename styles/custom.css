@@ -1,27 +1,48 @@
 /* styles/custom.css */
 
 :root {
-  --primary: #4b0082;
-  /* Royal Indigo */
+  /* Primary brand color */
+  --primary: #ffc107;
+  /* Golden Yellow – for headings, accents, CTA buttons */
+
+  /* Secondary / neutral */
   --secondary: #6c757d;
-  /* Neutral Gray */
+  /* Slate Gray – for subtitles, less dominant text */
+
+  /* Success / positive actions */
   --success: #28a745;
-  /* Classic Green */
+  /* Classic Green – for saved/favorited artworks */
+
+  /* Danger / negative actions */
   --danger: #dc3545;
-  /* Strong Red */
-  --warning: #ffc107;
-  /* Golden Amber */
-  --info: #007bff;
-  /* Bright Blue */
+  /* Warm Red – delete/remove warnings */
+
+  /* Warning / highlights / subtle emphasis */
+  --warning: #ffeb3b;
+  /* Light Yellow – subtle hover, badges, highlights */
+
+  /* Info / links / call-to-action */
+  --info: #17a2b8;
+  /* Cool Blue – links, secondary buttons */
+
+  /* Light / backgrounds / overlays */
   --light: #f8f9fa;
-  /* Off-White */
+  /* Soft off-white – body text, overlays */
+
+  /* Dark / deep backgrounds / hero overlay / footer */
   --dark: #343a40;
-  /* Charcoal Gray */
+  /* Charcoal Gray – hero overlays, footer */
+
+  /* Accent shades based on yellow */
+  --accent-1: #ffd54f;
+  /* Warm gold – hover states, borders */
+  --accent-2: #fff176;
+  /* Pale yellow – secondary highlights */
+  --accent-3: #ffe082;
+  /* Soft yellow – subtle backgrounds, cards */
+
   /* Font family */
-  --font-sans: 'Lato',
-    system-ui,
-    -apple-system,
-    sans-serif;
+  --font-sans: 'Lato', system-ui, -apple-system, sans-serif;
 }
 
 /* Apply globally */
@@ -31,6 +52,12 @@ html,
   font-family: var(--font-sans) !important;
 }
 
+/* ensure main content is not obscured by fixed navbar */
+.page-content {
+  padding-top: 56px;
+  /* match Bootstrap navbar height */
+}
+
 h1,
 h2,
 h3,
@@ -38,5 +65,29 @@ h4,
 h5,
 h6 {
   font-family: var(--font-sans) !important;
-  font-weight: 300;
+  font-weight: 500;
+  font-stretch: expanded;
+}
+
+.navbar-brand-artvault {
+  font-family: var(--font-sans);
+  letter-spacing: 2px;
+
+}
+
+/* custom.css */
+.logo-primary {
+  color: var(--primary);
+  /* golden yellow */
+  font-weight: 100;
+  font-size: 1.6rem;
+  font-stretch: expanded;
+}
+
+.logo-secondary {
+  color: var(--secondary);
+  /* off-white for contrast */
+  font-weight: 800;
+  font-size: 1.6rem;
+  font-stretch: expanded;
 }

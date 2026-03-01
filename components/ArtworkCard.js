@@ -1,66 +1,67 @@
 import useSWR from 'swr';
-import Error from 'next/error';
 import Link from 'next/link';
 import { Card, Button } from 'react-bootstrap';
-import { useAtom } from 'jotai';
 import FavouriteStar from './FavouriteStar';
-
-// TODO: add favourite toggle button and functionality to add/remove from favourites list
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function ArtworkCard({ objectID }) {
+    const { data, error } = useSWR(
+        `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`,
+        fetcher
+    );
 
-    const { data, error } = useSWR(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`, fetcher)
-
-    if (error) {
-        return <Error statusCode={404}></Error>
-    }
-
+    // Fallback values
+    const title = data?.title || 'Unknown Title';
+    const objectDate = data?.objectDate || 'Unknown';
+    const classification = data?.classification || 'Unknown';
+    const medium = data?.medium || 'Unknown';
     const imageURL = data?.primaryImageSmall || '/images/placeholder-image.jpg';
 
-
-    if (data) {
-        return (
-            <Card style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
-                <FavouriteStar objectID={objectID} />
-                <Card.Img variant="top" src={imageURL}
+    return (
+        <Card style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative' }}>
+            <FavouriteStar objectID={objectID} />
+            <Card.Img
+                variant="top"
+                src={imageURL}
+                style={{
+                    width: '100%',
+                    height: '200px',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                }}
+                onError={(e) => {
+                    e.target.src = '/images/placeholder-image.jpg';
+                }}
+            />
+            <Card.Body style={{ flex: '1 1 auto' }}>
+                <Card.Title
                     style={{
-                        width: '100%',    // specify the exact width
-                        height: '200px',   // specify the exact height
-                        objectFit: 'cover',  // ensures the image fills the area (or use 'contain' for white space)
-                        objectPosition: 'center',  // center the image within the space
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
                     }}
-                />
-                <Card.Body style={{ flex: '1 1 auto' }}>
-                    <Card.Title
-                        style={{
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,   // Limit to 2 lines
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                        }}
-                    >{data.title || 'N/A'}</Card.Title>
+                >
+                    {title}
+                </Card.Title>
 
-                    <Card.Text>
-                        <strong>Object Date:</strong> {data.objectDate || 'N/A'}<br />
-                        <strong>Classification:</strong> {data.classification || 'N/A'}<br />
-                        <strong>Medium:</strong> {data.medium || 'N/A'}
-                    </Card.Text>
-
-
-
-                </Card.Body>
-                <Card.Footer>
-
-                    <Link href={`/artwork/${objectID}`} passHref>
-                        <Button variant="primary">View Details</Button>
-                    </Link>
-                </Card.Footer>
-            </Card >
-        );
-    }
-
-    return null;
+                <Card.Text>
+                    <strong>Object Date:</strong> {objectDate}
+                    <br />
+                    <strong>Classification:</strong> {classification}
+                    <br />
+                    <strong>Medium:</strong> {medium}
+                </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+                <Link href={`/artwork/${objectID}`} passHref legacyBehavior>
+                    <Button variant="primary" className="w-100">
+                        View Details
+                    </Button>
+                </Link>
+            </Card.Footer>
+        </Card>
+    );
 }

@@ -1,0 +1,17 @@
+body {
+    padding-top: 72px;
+    /* adjust if needed */
+}
+
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--dark) !important;
+    /* text color on button */
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-1) !important;
+    /* hover color */
+    border-color: var(--accent-1) !important;
+}

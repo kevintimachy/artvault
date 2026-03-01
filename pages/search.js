@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Card, Container } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import { searchHistoryAtom } from "@/store";
 import { useAtom } from "jotai";
@@ -43,78 +43,110 @@ export default function AdvancedSearch() {
         router.push(`/artwork?${queryString}`);
 
     }
-
     return (
-        <Form onSubmit={handleSubmit(submitForm)}>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Search Query</Form.Label>
-                        <Form.Control type="text" placeholder="" name="q"
-                            {...register('q', { required: true })}
-                            className={errors.q ? 'is-invalid' : ''}
-                        />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col md={4}>
-                    <Form.Label>Search By</Form.Label>
-                    <Form.Select name="searchBy" className="mb-3"
-                        {...register('searchBy')}
-                    >
-                        <option value="title">Title</option>
-                        <option value="tags">Tags</option>
-                        <option value="artistOrCulture">Artist or Culture</option>
+        <Container className="py-4">
+            {/* Header */}
+            <div className="mb-4">
+                <h2 className="fw-bold mb-1">Advanced Search</h2>
+                <p className="text-muted mb-0">
+                    Refine your search to discover specific artworks in the MET collection.
+                </p>
+            </div>
 
-                    </Form.Select>
-                </Col>
-                <Col md={4}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Geo Location</Form.Label>
-                        <Form.Control type="text" placeholder="" name="geoLocation"
-                            {...register('geoLocation')}
-                        />
-                        <Form.Text className="text-muted">
-                            Case Sensitive String (ie &quot;Europe&quot;, &quot;France&quot;, &quot;Paris&quot;, &quot;China&quot;, &quot;New York&quot;, etc.), with multiple values separated by the | operator
-                        </Form.Text>
-                    </Form.Group>
-                </Col>
-                <Col md={4}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Medium</Form.Label>
-                        <Form.Control type="text" placeholder="" name="medium"
-                            {...register('medium')} />
-                        <Form.Text className="text-muted">
-                            Case Sensitive String (ie: &quot;Ceramics&quot;, &quot;Furniture&quot;, &quot;Paintings&quot;, &quot;Sculpture&quot;, &quot;Textiles&quot;, etc.), with multiple values separated by the | operator
-                        </Form.Text>
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Check
-                        type="checkbox"
-                        label="Highlighted"
-                        name="isHighlight"
-                        {...register('isHighlight')}
-                    />
-                    <Form.Check
-                        type="checkbox"
-                        label="Currently on View"
-                        name="isOnView"
-                        {...register('isOnView')}
-                    />
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <br />
-                    <Button className="btn btn-primary" type="submit">
-                        Submit
-                    </Button>
-                </Col>
-            </Row>
-        </Form>
+            <Card className="shadow-sm border-0">
+                <Card.Body className="p-4">
+                    <Form onSubmit={handleSubmit(submitForm)}>
+                        {/* Search Query */}
+                        <Row className="mb-3">
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label className="fw-semibold">
+                                        Search Query
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="e.g. Monet, landscape, vase..."
+                                        {...register("q", { required: true })}
+                                        className={errors.q ? "is-invalid" : ""}
+                                    />
+                                    {errors.q && (
+                                        <Form.Control.Feedback type="invalid">
+                                            Search query is required.
+                                        </Form.Control.Feedback>
+                                    )}
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        {/* Filters */}
+                        <Row className="g-3 mb-2">
+                            <Col md={4}>
+                                <Form.Group>
+                                    <Form.Label className="fw-semibold">Search By</Form.Label>
+                                    <Form.Select {...register("searchBy")}>
+                                        <option value="title">Title</option>
+                                        <option value="tags">Tags</option>
+                                        <option value="artistOrCulture">Artist or Culture</option>
+                                    </Form.Select>
+                                </Form.Group>
+                            </Col>
+
+                            <Col md={4}>
+                                <Form.Group>
+                                    <Form.Label className="fw-semibold">Geo Location</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="e.g. France | Italy | China"
+                                        {...register("geoLocation")}
+                                    />
+                                    <Form.Text className="text-muted">
+                                        Separate multiple values with |
+                                    </Form.Text>
+                                </Form.Group>
+                            </Col>
+
+                            <Col md={4}>
+                                <Form.Group>
+                                    <Form.Label className="fw-semibold">Medium</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="e.g. Paintings | Sculpture"
+                                        {...register("medium")}
+                                    />
+                                    <Form.Text className="text-muted">
+                                        Separate multiple values with |
+                                    </Form.Text>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+
+                        {/* Checkboxes */}
+                        <Row className="mb-4">
+                            <Col>
+                                <div className="d-flex gap-4 flex-wrap">
+                                    <Form.Check
+                                        type="checkbox"
+                                        label="Highlighted"
+                                        {...register("isHighlight")}
+                                    />
+                                    <Form.Check
+                                        type="checkbox"
+                                        label="Currently on View"
+                                        {...register("isOnView")}
+                                    />
+                                </div>
+                            </Col>
+                        </Row>
+
+                        {/* Submit */}
+                        <div className="d-flex justify-content-end">
+                            <Button variant="primary" size="lg" type="submit">
+                                Search Artworks
+                            </Button>
+                        </div>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </Container>
     );
 }

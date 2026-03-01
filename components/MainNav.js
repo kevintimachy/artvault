@@ -44,8 +44,10 @@ export default function MainNav() {
   return (
     <>
       <Navbar expanded={isExpanded} className="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark" expand="lg">
-        <Container>
-          <Navbar.Brand>ArtVault</Navbar.Brand>
+        <Container >
+          <Navbar.Brand as={Link} href="/" className="navbar-brand-artvault ms-3">
+            <span className="logo-primary">Art</span><span className="logo-secondary">Vault</span>
+          </Navbar.Brand>
           <Navbar.Toggle onClick={toggle} aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -88,9 +90,7 @@ export default function MainNav() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <br />
-      <br />
-      <br />
+
     </>
   );
 } 

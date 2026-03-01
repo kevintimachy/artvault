@@ -1,0 +1,65 @@
+.heroImageWrapper {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    height: 80vh;
+    overflow: hidden;
+    margin-top: -56px;
+}
+
+.heroImageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(45%);
+    /* dims image */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    /* subtle dark overlay */
+    z-index: 1;
+}
+
+.heroText {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: var (--light);
+    z-index: 2;
+}
+
+.heroHeader {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    /* subtle shadow */
+    font-stretch: expanded;
+}
+
+.heroText p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--light);
+    /* soft text */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.sectionTitle {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
