@@ -25,6 +25,7 @@ export default function Favourites() {
         );
     }
 
+
     return (
         <Container className="py-4">
             {/* Header */}

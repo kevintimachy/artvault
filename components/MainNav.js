@@ -6,6 +6,7 @@ import { searchHistoryAtom } from "@/store";
 import { useAtom } from "jotai";
 import { addToHistory } from "@/lib/userData";
 import { removeToken, readToken } from "@/lib/authenticate";
+import Image from "next/image";
 
 
 export default function MainNav() {
@@ -45,8 +46,21 @@ export default function MainNav() {
     <>
       <Navbar expanded={isExpanded} className="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark" expand="lg">
         <Container >
-          <Navbar.Brand as={Link} href="/" className="navbar-brand-artvault ms-3">
-            <span className="logo-primary">Art</span><span className="logo-secondary">Vault</span>
+          <Navbar.Brand
+            as={Link}
+            href="/"
+            className="navbar-brand-artvault ms-3 d-flex align-items-center"
+          >
+            <Image
+              src="/vault.png"
+              alt="ArtVault Logo"
+              width={30}
+              height={30}
+              className="me-2"
+
+            />
+            <span className="logo-primary">Art</span>
+            <span className="logo-secondary">Vault</span>
           </Navbar.Brand>
           <Navbar.Toggle onClick={toggle} aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
